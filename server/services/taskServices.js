@@ -34,4 +34,18 @@ const deleteTask = async (taskId) => {
   }
 };
 
-module.exports = { createtask, deleteTask };
+// Edit and update task
+const updateTask = async (taskId, updates) => {
+
+  const taskObjectId = new mongoose.Types.ObjectId(taskId);
+
+  try {
+    const updatedTask = await Task.findByIdAndUpdate(taskObjectId, {...updates}); // update: object which contains the modifications
+    if(!updatedTask) throw new Error("updateTask: Task not found");
+    return updatedTask;
+  } catch (error) {
+    throw error;
+  }
+}
+
+module.exports = { createtask, deleteTask, updateTask };

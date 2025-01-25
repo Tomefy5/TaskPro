@@ -1,35 +1,33 @@
 const express = require("express");
-const app = express();
-const cors = require("cors");
-const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-const port = process.env.PORT || 5000;
-const authRouter = require("./routes/auth");
-const questionsRouter = require("./routes/questions");
-const answersScore = require("./routes/answersScore");
-const gameEvent = require("./routes/gameEvent");
+const dotenv = require("dotenv");
+const cors = require("cors");
+const app = express();
+
+const testCrudRoutes = require("./routes/taskCrudRoutes");
 
 dotenv.config();
+
+//middleware
 app.use(cors());
 app.use(express.json());
 
-app.use("/api", authRouter);
-app.use("/api", questionsRouter);
-app.use("/api", answersScore);
-app.use("/api", gameEvent);
+//routes
+app.use("/tasks", testCrudRoutes);
 
+
+// connect to mongodb
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("Connected successfully \n");
+    console.log("Connected successfully to mongodb");
   })
-  .catch((error) => {
-    console.log("Error connecting to Mongoose \n", error);
-  });
+  .catch((err) => console.error(err.message));
 
-app.listen(port, () => {
-  console.log("Server running on: http://localhost:5000 ");
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Backend server listen on : http://localhost:${PORT}`);
 });

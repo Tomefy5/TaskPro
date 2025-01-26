@@ -1,9 +1,26 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import api from "../../services/api";
 
- const taskSlice = createSlice({
+export const fetchTasks = createAsyncThunk(
+  "tasks/fetchTasks",
+  async (_,{ rejectWithValue }) => {
+    try {
+      const response = await api.get("/fetch-tasks");
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || "Error on fetching tasks");
+    }
+  }
+);
+
+const taskSlice = createSlice({
   name: "tasks",
   initialState: { tasks: [] },
   reducers: {},
-  extraReducers: () => {}
+  extraReducers: (builder) => {
+    builder.addCase(fetchTasks.fulfilled, (store, action) => {
+      store.tasks = action.payload;
+    });
+  },
 });
-export default taskSlice;
+export default taskSlice.reducer;

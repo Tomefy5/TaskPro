@@ -15,6 +15,11 @@ const TaskSchema = new Schema({
     enum: ["low", "medium", "high"],
     default: "low",
   },
+  completed: {
+    type: Boolean,
+    required: true,
+    default: false
+  },
   deadline: {
     type: Date,
     required: false,

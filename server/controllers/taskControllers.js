@@ -1,8 +1,20 @@
+const Task = require("../models/Task");
 const {
   createtask,
   deleteTask,
   updateTask,
 } = require("../services/taskServices");
+
+// Fetch all tasks
+const fetchAllTasksHandler = async (req, res) => {
+  try {
+    const tasks = await Task.find();
+    if (!tasks) res.json({ message: "No tasks found" });
+    res.json(tasks);
+  } catch (error) {
+    res.status(500).json({ message: `Error fetching task: ${error.message}` });
+  }
+};
 
 // Controller for creating tasks
 const createTaskHandler = async (req, res) => {
@@ -48,4 +60,5 @@ module.exports = {
   createTaskHandler,
   deleteTaskHandler,
   updateTaskHandler,
+  fetchAllTasksHandler
 };

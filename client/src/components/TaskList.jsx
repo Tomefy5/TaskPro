@@ -14,11 +14,11 @@ export default function TaskList() {
     title: "Update task",
     description: "We have updated the task",
   };
-  const taskId = "6795a543d7ef60179700704c";
+  const taskId = "6795a543d7ef60179700704a";
 
   useEffect(() => {
     dispatch(fetchTasks());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>

@@ -56,9 +56,9 @@ const taskSlice = createSlice({
         console.log(action);
       })
       .addCase(updateTask.fulfilled, (store, action) => {
-        const updatedTasks = store.tasks.map((task) => {
-          task._id === action.payload.taskId ? { ...task, ...action.payload.update } : {...task};
-        });
+        const updatedTasks = store.tasks.map((task) => (
+          task._id === action.payload.taskId ? { ...task, ...action.payload.update } : task
+        ));
         console.log(action);
         store.tasks = updatedTasks;
       });

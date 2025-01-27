@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const taskController = require("../controllers/taskControllers");
+const taskController = require("../controllers/taskCrudControllers");
 
 // Route for fetching all tasks
 router.get("/fetch-tasks", taskController.fetchAllTasksHandler);

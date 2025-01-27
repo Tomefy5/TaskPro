@@ -3,7 +3,7 @@ const {
   createtask,
   deleteTask,
   updateTask,
-} = require("../services/taskServices");
+} = require("../services/taskCrudServices");
 
 // Fetch all tasks
 const fetchAllTasksHandler = async (req, res) => {
@@ -60,5 +60,5 @@ module.exports = {
   createTaskHandler,
   deleteTaskHandler,
   updateTaskHandler,
-  fetchAllTasksHandler
+  fetchAllTasksHandler,
 };

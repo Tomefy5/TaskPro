@@ -4,7 +4,8 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const app = express();
 
-const testCrudRoutes = require("./routes/taskCrudRoutes");
+const taskCrudRoutes = require("./routes/taskCrudRoutes");
+const taskPriorityRoutes = require("./routes/taskPriorityRoute");
 
 dotenv.config();
 
@@ -13,7 +14,8 @@ app.use(cors());
 app.use(express.json());
 
 //routes
-app.use("/api", testCrudRoutes);
+app.use("/api", taskCrudRoutes);
+app.use("/api", taskPriorityRoutes);
 
 
 // connect to mongodb

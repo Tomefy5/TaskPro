@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createTask, fetchTasks, updateTask } from "../redux/slices/taskSlice";
+import { createTask, deleteTask, fetchTasks, updateTask } from "../redux/slices/taskSlice";
 
 export default function TaskList() {
   const dispatch = useDispatch();
@@ -38,6 +38,14 @@ export default function TaskList() {
         className="btn btn-outline"
       >
         Update
+      </button>
+      <button
+        onClick={() => {
+          dispatch(deleteTask(taskId));
+        }}
+        className="btn btn-outline"
+      >
+        Delete
       </button>
     </div>
   );

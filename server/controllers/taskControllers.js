@@ -10,7 +10,7 @@ const fetchAllTasksHandler = async (req, res) => {
   try {
     const tasks = await Task.find();
     if (!tasks) res.json({ message: "No tasks found" });
-    res.json(tasks);
+    res.status(200).json(tasks);
   } catch (error) {
     res.status(500).json({ message: `Error fetching task: ${error.message}` });
   }

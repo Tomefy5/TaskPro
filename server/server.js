@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 //routes
-app.use("/tasks", testCrudRoutes);
+app.use("/api", testCrudRoutes);
 
 
 // connect to mongodb

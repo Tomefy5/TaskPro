@@ -1,6 +1,7 @@
 const { changePriority } = require("../services/taskPriorityServices");
 
 const changePriorityHandler = async (req, res) => {
+  // request form: `http://localhost:5000/api/change-priority/${taskId}?priority=${priority}`
   const { taskId } = req.params;
   const newPriority = req.query.priority;
 

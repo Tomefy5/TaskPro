@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createTask, deleteTask, fetchTasks, updateTask } from "../redux/slices/taskSlice";
+import { changePriority, createTask, deleteTask, fetchTasks, updateTask } from "../redux/slices/taskSlice";
 
 export default function TaskList() {
   const dispatch = useDispatch();
@@ -14,7 +14,8 @@ export default function TaskList() {
     title: "Update task",
     description: "We have updated the task",
   };
-  const taskId = "6797289314adb374c365a5ad";
+  const taskId = "6795a543d7ef60179700704c";
+  const newPriority = "low";
 
   useEffect(() => {
     dispatch(fetchTasks());
@@ -46,6 +47,14 @@ export default function TaskList() {
         className="btn btn-outline"
       >
         Delete
+      </button>
+      <button
+        onClick={() => {
+          dispatch(changePriority({taskId, newPriority}));
+        }}
+        className="btn btn-outline"
+      >
+        Priority
       </button>
     </div>
   );

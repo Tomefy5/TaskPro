@@ -54,6 +54,23 @@ export const deleteTask = createAsyncThunk(
   }
 );
 
+// Action for changing task priority
+export const changePriority = createAsyncThunk(
+  "tasks/changePriority",
+  async ({ taskId, newPriority }, { rejectWithValue }) => {
+    try {
+      const response = await api.put(
+        `/change-priority/${taskId}?priority=${newPriority}`
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data || "Error on changing task priority"
+      );
+    }
+  }
+);
+
 const taskSlice = createSlice({
   name: "tasks",
   initialState: { tasks: [] },
@@ -75,8 +92,15 @@ const taskSlice = createSlice({
         store.tasks = updatedTasks;
       })
       .addCase(deleteTask.fulfilled, (store, action) => {
-        store.tasks = store.tasks.filter(task => task._id !== action.payload);
+        store.tasks = store.tasks.filter((task) => task._id !== action.payload);
       })
+      .addCase(changePriority.fulfilled, (store, action) => {
+        store.tasks.map((task) => (
+          task.id === action.payload.taskId 
+          ? {...task, priority: action.payload.priority}
+          : task
+        ))
+      });
   },
 });
 export default taskSlice.reducer;

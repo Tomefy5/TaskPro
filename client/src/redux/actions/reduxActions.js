@@ -40,7 +40,7 @@ export const updateTask = createAsyncThunk(
       return rejectWithValue(error.response?.data || "Error on updating task");
     }
   }
-);
+);  
 
 // Action for deleting tasks
 export const deleteTask = createAsyncThunk(
@@ -48,6 +48,7 @@ export const deleteTask = createAsyncThunk(
   async (taskId, { rejectWithValue }) => {
     try {
       await api.delete(`/delete-task/${taskId}`);
+      return taskId;
     } catch (error) {
       return rejectWithValue(error.response?.data || "Error on deleting task");
     }
@@ -71,6 +72,8 @@ export const changePriority = createAsyncThunk(
   }
 );
 
+
+// Action for changing deadline
 export const changeDeadline = createAsyncThunk(
   "tasks/changeDeadline",
   async ({ taskId, deadline }, { rejectWithValue }) => {
@@ -84,3 +87,16 @@ export const changeDeadline = createAsyncThunk(
     }
   }
 );
+
+// Action for sorting tasks
+export const sortTasks = createAsyncThunk(
+  "tasks/sortTasks",
+  async (_, {rejectWithValue}) => {
+    try {
+      const sortedTasks = await api.get("/sort-tasks");
+      return sortedTasks;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || "Error on sorting tasks");
+    }
+  }
+)

@@ -5,6 +5,7 @@ import {
   createTask,
   deleteTask,
   fetchTasks,
+  sortTasks,
   updateTask,
 } from "../actions/reduxActions";
 
@@ -33,9 +34,9 @@ const taskSlice = createSlice({
       })
       .addCase(changePriority.fulfilled, (store, action) => {
         store.tasks.map((task) =>
-          task.id === action.payload.taskId
+          task._id === action.payload.taskId
             ? { ...task, priority: action.payload.priority }
-            : task
+            : task  
         );
       })
       .addCase(changeDeadline.fulfilled, (store, action) => {
@@ -44,7 +45,10 @@ const taskSlice = createSlice({
             ? { ...task, deadline: action.payload.deadline }
             : task
         );
-      });
+      })
+      // .addCase(sortTasks.fulfilled, (store, action) => {
+      //   store.tasks = action.pa  //! To do
+      // })
   },
 });
 export default taskSlice.reducer;

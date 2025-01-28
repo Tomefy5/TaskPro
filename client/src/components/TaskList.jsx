@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changePriority, createTask, deleteTask, fetchTasks, updateTask } from "../redux/actions/reduxActions";
+import { changePriority, createTask, deleteTask, fetchTasks, sortTasks, updateTask } from "../redux/actions/reduxActions";
 
 export default function TaskList() {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ export default function TaskList() {
     title: "Update task",
     description: "We have updated the task",
   };
-  const taskId = "67973a83c5276592ce4714fa";
+  const taskId = "67973c022d4a12c9d2339b30";
   const newPriority = "medium";
 
   useEffect(() => {
@@ -55,6 +55,14 @@ export default function TaskList() {
         className="btn btn-outline"
       >
         Priority
+      </button>
+      <button
+        onClick={() => {
+          dispatch(sortTasks());
+        }}
+        className="btn btn-outline"
+      >
+        Sort
       </button>
     </div>
   );

@@ -1,9 +1,9 @@
-import TaskList from "./components/TaskList";
+import DatePickerComponent from "./components/DatePickerComponent";
 
   function App() {
   return (
     <div >  
-      <TaskList/>
+      <DatePickerComponent/>
     </div>
   );
 }

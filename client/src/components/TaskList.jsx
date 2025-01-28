@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changePriority, createTask, deleteTask, fetchTasks, updateTask } from "../redux/slices/taskSlice";
+import { changePriority, createTask, deleteTask, fetchTasks, updateTask } from "../redux/actions/reduxActions";
 
 export default function TaskList() {
   const dispatch = useDispatch();

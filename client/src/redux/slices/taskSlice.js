@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  changeDeadline,
   changePriority,
   createTask,
   deleteTask,
@@ -34,6 +35,13 @@ const taskSlice = createSlice({
         store.tasks.map((task) =>
           task.id === action.payload.taskId
             ? { ...task, priority: action.payload.priority }
+            : task
+        );
+      })
+      .addCase(changeDeadline.fulfilled, (store, action) => {
+        store.tasks = store.tasks.map((task) =>
+          task._id === action.payload.taskId
+            ? { ...task, deadline: action.payload.deadline }
             : task
         );
       });

@@ -14,8 +14,8 @@ export default function TaskList() {
     title: "Update task",
     description: "We have updated the task",
   };
-  const taskId = "6795a543d7ef60179700704c";
-  const newPriority = "low";
+  const taskId = "67973a83c5276592ce4714fa";
+  const newPriority = "medium";
 
   useEffect(() => {
     dispatch(fetchTasks());

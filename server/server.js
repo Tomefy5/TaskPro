@@ -7,6 +7,7 @@ const app = express();
 const taskCrudRoutes = require("./routes/taskCrudRoutes");
 const taskPriorityRoutes = require("./routes/taskPriorityRoute");
 const deadlineRoutes = require("./routes/deadlineRoutes");
+const sortTasksRoutes = require("./routes/sortTasksRoutes");
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/api", taskCrudRoutes);
 app.use("/api", taskPriorityRoutes);
 app.use("/api", deadlineRoutes);
+app.use("/api", sortTasksRoutes);
 
 
 // connect to mongodb

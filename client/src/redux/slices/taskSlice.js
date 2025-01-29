@@ -46,9 +46,9 @@ const taskSlice = createSlice({
             : task
         );
       })
-      // .addCase(sortTasks.fulfilled, (store, action) => {
-      //   store.tasks = action.pa  //! To do
-      // })
+      .addCase(sortTasks.fulfilled, (store, action) => {
+        store.tasks = action.payload;
+      })
   },
 });
 export default taskSlice.reducer;

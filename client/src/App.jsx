@@ -1,11 +1,9 @@
-import DatePickerComponent from "./components/DatePickerComponent";
-import TaskList from "./components/TaskList";
+import BasicLayout from "./layouts/BasicLayout";
 
   function App() {
   return (
-    <div >  
-      <DatePickerComponent/>
-      <TaskList/>
+    <div > 
+      <BasicLayout/>
     </div>
   );
 }

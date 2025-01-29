@@ -93,8 +93,8 @@ export const sortTasks = createAsyncThunk(
   "tasks/sortTasks",
   async (_, {rejectWithValue}) => {
     try {
-      const sortedTasks = await api.get("/sort-tasks");
-      return sortedTasks;
+      const response = await api.get("/sort-tasks");
+      return response.data; // sorted tasks
     } catch (error) {
       return rejectWithValue(error.response?.data || "Error on sorting tasks");
     }
